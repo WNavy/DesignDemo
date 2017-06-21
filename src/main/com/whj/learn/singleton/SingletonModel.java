@@ -2,6 +2,7 @@ package main.com.whj.learn.singleton;
 
 /**
  * Created by wuhaijun on 2017/6/21.
+ * 懒汉单例--非线程安全
  */
 public class SingletonModel {
 
