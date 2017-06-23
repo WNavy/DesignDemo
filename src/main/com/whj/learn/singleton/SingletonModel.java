@@ -6,7 +6,7 @@ package main.com.whj.learn.singleton;
  */
 public class SingletonModel {
 
-    private static SingletonModel singletonModel;
+    private static SingletonModel singletonModel = null;
 
     private SingletonModel(){}
 
