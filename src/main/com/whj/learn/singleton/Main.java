@@ -15,9 +15,7 @@ public class Main {
         System.out.print(single1 == single2);
     }
 
-    /**多线程测试
-     *
-     */
+    /**多线程测试懒汉模式*/
     @Test
     public void test2(){
         new MyThread("A").start();
@@ -29,6 +27,15 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+    /**多线程测试内部类形式的单例模式*/
+    @Test
+    public void test3(){
+        new MyThread1("A").start();
+        new MyThread1("B").start();
+        new MyThread1("C").start();
+    }
+
 }
 
 class MyThread extends Thread {
@@ -37,6 +44,15 @@ class MyThread extends Thread {
         System.out.println(model);
     }
     public MyThread(String name){
+        super(name);
+    }
+}
+
+class MyThread1 extends Thread {
+    public void run(){
+        System.out.println(SingletonModelStatic.getInstance());
+    }
+    public MyThread1(String name){
         super(name);
     }
 }
