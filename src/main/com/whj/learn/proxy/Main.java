@@ -38,8 +38,7 @@ public class Main {
     @Test
     public void CglibProxyText(){
         TargetUser targetUser = new TargetUser();
-
         TargetUser proxy = (TargetUser)new CglibProxyFactory(targetUser).getInstance();
-
+        proxy.save();
     }
 }
