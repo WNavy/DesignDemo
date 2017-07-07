@@ -40,9 +40,13 @@
    1、引入cglib的jar包，spring的核心包中已经包含了Cglib功能，所以直接引入spring-core的jar包
    2、代理的类不能是final
    3、目标对象的方法如果被final或static修饰，就不会被拦截，即不会执行目标对象额外的扩展方法
-   4、实现MethodInterceptor接口
+   4、实现MethodInterceptor接口,重写intercept方法。在方法中调用目标方法时，
+      如果使用method.invoke(target,args),第一个参数需要是引入的目标类
+      如果使用的是代理methodProxy.invokeSuper(obj,args),第一个参数则是生成的代理对象
 
    Cglib可以通过设置回调函数CallBack和回调拦截器CallbackFilter来进行来过滤拦截
+
+
 
  总结：如果目标对象实现了接口，则使用jdk动态代理，如果没有，则使用Cglib动态代理
 

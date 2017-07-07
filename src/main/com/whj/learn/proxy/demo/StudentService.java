@@ -5,6 +5,16 @@ package main.com.whj.learn.proxy.demo;
  */
 public class StudentService {
 
+    private String name;
+
+    public StudentService(){
+        super();
+    }
+
+    public StudentService(String name){
+        this.name = name;
+    }
+
     public void service(){
         add();
         delete();
@@ -28,4 +38,5 @@ public class StudentService {
     public void select(){
         System.out.println("查询学生……");
     }
+
 }

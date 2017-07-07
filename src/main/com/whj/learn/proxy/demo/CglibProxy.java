@@ -1,7 +1,6 @@
 package main.com.whj.learn.proxy.demo;
 
 import org.springframework.cglib.proxy.*;
-
 import java.lang.reflect.Method;
 
 /**
@@ -16,20 +15,29 @@ public class CglibProxy implements MethodInterceptor {
     }
 
     //创建代理对象
-    public Object newInstance(Object target){
+    public <T> T getInstance(T target){
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(target.getClass());
         enhancer.setCallbacks(new Callback[]{this, NoOp.INSTANCE});
         enhancer.setCallbackFilter(new MyProxyFilter());
         //enhancer.setCallback(this);
-        return enhancer.create();
+        return (T) enhancer.create();
+    }
+
+    public <T> T getInstance(T target,Class[] args,Object[] argsValue){
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(target.getClass());
+        enhancer.setCallbacks(new Callback[]{this, NoOp.INSTANCE});
+        enhancer.setCallbackFilter(new MyProxyFilter());
+        return (T) enhancer.create(args,argsValue);
     }
 
     @Override
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
 
-        if ("Teacher".equals(name)){
+        if ("Teacher".equalsIgnoreCase(name)){
             System.out.println("增删改查开始执行……");
+            //Object result = method.invoke(obj,args);
             Object result = methodProxy.invokeSuper(obj,args);
             System.out.println("增删改查执行结束……");
             return result;

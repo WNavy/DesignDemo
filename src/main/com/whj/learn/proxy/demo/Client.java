@@ -10,7 +10,14 @@ public class Client {
     @Test
     public void test(){
         StudentService service = new StudentService();
-        StudentService proxy = (StudentService) new CglibProxy("jack").newInstance(service);
-        proxy.service();
+        StudentService proxy = new CglibProxy("jack").getInstance(service);
+        proxy.select();
+    }
+
+    @Test
+    public void test2(){
+        StudentService service = new StudentService();
+        StudentService proxy = new CglibProxy("Teacher").getInstance(service,new Class[]{String.class},new Object[]{"jack"});
+        proxy.delete();
     }
 }
