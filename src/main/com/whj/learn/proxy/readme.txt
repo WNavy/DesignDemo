@@ -42,6 +42,8 @@
    3、目标对象的方法如果被final或static修饰，就不会被拦截，即不会执行目标对象额外的扩展方法
    4、实现MethodInterceptor接口
 
+   Cglib可以通过设置回调函数CallBack和回调拦截器CallbackFilter来进行来过滤拦截
+
  总结：如果目标对象实现了接口，则使用jdk动态代理，如果没有，则使用Cglib动态代理
 
 
