@@ -18,3 +18,21 @@
 
     特点在于隔离，不直接操纵目标对象.
 
+    ①静态代理：代理类和目标类实现了相同的接口，同时代理类持有目标类的引用
+
+    ②JDK代理：使用JDK提供的Proxy(java.lang.reflect)Proxy.newProxyInstance(classLoader,interface,invocation)
+              返回值就是生成的代理对象
+        代理类也不用实现接口，但是目标对象必须要实现接口，否则不能实动态代理
+
+    ③Cglib代理：目标对象不用实现接口，但是代理对象需要实现MethodInterceptor接口，需要重写intercept()方法
+            Cglib代理实现一般使用Enhancer来生成代理对象，代理对象在调用方法时，自动被intercept()方法拦截
+
+            通过Enhancer类，
+            enhancer.setSuperClass()  设置父类
+            enhancer.setCallback(this) 设置回调对象
+            如果需要设置拦截限制，可以使用enhancer.setCallbackFilter()，
+            根据返回的值，可以选择回调对象
+            eg:enhancer.setCallBack(new CallBank[]{this,NoOp.INSTANCE})
+
+
+
