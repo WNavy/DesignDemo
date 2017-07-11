@@ -21,6 +21,17 @@ public class SingletonModel {
         return singletonModel;
     }
 
+    public static SingletonModel getSingletonModel(){
+        if (singletonModel == null){
+            synchronized (SingletonModel.class){
+                if (singletonModel == null){
+                    singletonModel = new SingletonModel();
+                }
+            }
+        }
+        return singletonModel;
+    }
+
     private void slowDown(){
         try {
             Thread.sleep(1000);
