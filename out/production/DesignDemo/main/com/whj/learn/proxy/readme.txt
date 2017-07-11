@@ -21,7 +21,7 @@
     1、代理对象不需要实现接口，一般为代理工厂
     2、代理对象的生成是利用JDK的API动态的在内存中构件代理对象(需要我们指定创建代理对象/目标对象实现的接口类型)
     3、API使用java.lang.reflect.Proxy中的newProxyInstance方法
-    4、目标对象一定要实现接口，否则不能动态代理
+    4、目标对象一定要实现接口，否则不能实现动态代理
 
   JDK代理主要的API是使用newProxyInstance方法，该方法接收三个参数：
   ClassLoader loader：指定当前目标对象使用类加载器，获取类加载器的方法是固定的obj.getClass().getClassLoader()
